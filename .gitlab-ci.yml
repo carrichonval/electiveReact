@@ -24,7 +24,7 @@ run_app:
   image: node
   script: 
     - npm install
-    - CI=true npm test
+    - CI=true npm start
     - echo "Test successfully!"
     # - npm install pm2 -g
     # - pm2 start ./node_modules/react-scripts/scripts/start.js --name "REACT"
