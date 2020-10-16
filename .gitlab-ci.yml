@@ -24,9 +24,8 @@ run_app:
   image: node
   script: 
     - npm install
-    - npm install pm2 -g
-    - pm2 start ./node_modules/react-scripts/scripts/start.js --name "REACT"
-    - curl  http://172.17.0.3:3000
+    - npm run build
+    - echo "Build Success"
 
 # curl:
 #   stage: curl
