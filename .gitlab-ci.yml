@@ -29,5 +29,11 @@ curl:
   stage: curl
   script:
     - echo "GET"
-    - curl https://api.valentincarrichon.fr/sports
+    - curl -X GET https://api.valentincarrichon.fr/sports
+    - echo "PUT"
+    - curl -X PUT -d "name=test&description=testdescr" https://api.valentincarrichon.fr/sports/7
+    - echo "DELETE"
+    - curl -X DELETE https://api.valentincarrichon.fr/sports/12
+    - echo "POST"
+    - curl -X POST -d "name=test&description=testdescr" https://api.valentincarrichon.fr/sports
 
