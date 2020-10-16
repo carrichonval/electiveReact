@@ -17,7 +17,7 @@ eslint:
   stage: es_lint
   image: node
   dependencies:
-    - build  
+    - module_install  
   script:
     - npx eslint ./src/components/Home.js --fix
 
@@ -26,7 +26,7 @@ run_app:
   stage: run_app
   image: node
   dependencies:
-    - build  
+    - module_install  
   script: 
     - npm run build
 
