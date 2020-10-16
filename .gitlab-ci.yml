@@ -1,29 +1,29 @@
 stages:
-  # - npm_install
-  # - es_lint
-  # - run_app
+  - npm_install
+  - es_lint
+  - run_app
   - curl
 
-# module_install:
-#   stage: npm_install
-#   image: node
-#   script:
-#     - npm install
+module_install:
+  stage: npm_install
+  image: node
+  script:
+    - npm install
 
-# eslint:
-#   stage: es_lint
-#   image: node
-#   script:
-#     - npm install
-#     - npx eslint ./src/components/Home.js --fix
+eslint:
+  stage: es_lint
+  image: node
+  script:
+    - npm install
+    - npx eslint ./src/components/Home.js --fix
 
 
-# run_app:
-#   stage: run_app
-#   image: node
-#   script: 
-#     - npm install
-#     - npm run build
+run_app:
+  stage: run_app
+  image: node
+  script: 
+    - npm install
+    - npm run build
 
 curl:
   stage: curl
