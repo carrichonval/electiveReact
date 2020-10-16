@@ -27,7 +27,6 @@ stages:
 
 curl:
   stage: curl
-  image: debian
   script:
     - echo "GET"
     - curl https://api.valentincarrichon.fr/sports
