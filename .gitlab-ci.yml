@@ -1,7 +1,7 @@
 stages:
   - first_test
  
- first-test:
+first-test:
   stage: first_test
   image: debian
   script:
