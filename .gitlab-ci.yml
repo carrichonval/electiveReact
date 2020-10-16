@@ -1,8 +1,32 @@
 stages:
-  - first_test
- 
-first-test:
-  stage: first_test
-  image: debian
+  - es_lint
+  # - module_install
+  # - run_server
+  # - curl
+
+es_lint:
+  stage: es_lint
+  image: pipelinecomponents/eslint:latest
   script:
-    - echo "toto"
+    - npx eslint ./src/components/Home.js --fix
+
+# module_install:
+#   stage: module_install
+#   image: node
+#   script:
+#     - npm install
+
+# run_server:
+#   stage: run_server
+#   image: node
+#   script:
+#     - npm install
+#     - npm install pm2 -g
+#     - pm2 start app.js
+
+# curl:
+#   stage: curl
+#   image: debian
+#   script:
+#     - curl -i -H "Accept:application/json" -H "Content-Type:application/json" -X GET http://localhost:3001/users/testPipeline
+
