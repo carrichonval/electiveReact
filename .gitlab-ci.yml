@@ -13,9 +13,9 @@ module_install:
   artifacts:
     paths:
       - node_modules/
-  only:
-    changes:
-      - "package.json"
+  # only:
+  #   changes:
+  #     - "package.json"
 
 eslint:
   stage: es_lint
