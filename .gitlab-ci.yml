@@ -23,11 +23,12 @@ run_app:
   stage: run_app
   image: node
   script:
+    - export CI_SERVER_URL="http://localhost"
+    - export CI_SERVER_HOST="localhost"
     - npm install
     - npm install pm2 -g
     - pm2 start ./node_modules/react-scripts/scripts/start.js --name "REACT"
-    - curl docker:3000
-    - curl docker:5000
+    - curl localhost:3000
 
 # curl:
 #   stage: curl
