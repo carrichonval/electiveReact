@@ -26,7 +26,8 @@ run_app:
     - npm install
     - npm install pm2 -g
     - pm2 start ./node_modules/react-scripts/scripts/start.js --name "REACT"
-    - curl localhost:3000
+    - curl docker:3000
+    - curl docker:5000
 
 # curl:
 #   stage: curl
