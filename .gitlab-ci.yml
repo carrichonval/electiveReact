@@ -5,7 +5,7 @@ stages:
   - curl
 
 before_script:
-  - npm_install
+  - npm install
 
 module_install:
   stage: npm_install
@@ -27,6 +27,7 @@ run_app:
 
 curl:
   stage: curl
+  image: node
   script:
     - echo "GET"
     - curl -X GET https://api.valentincarrichon.fr/sports
