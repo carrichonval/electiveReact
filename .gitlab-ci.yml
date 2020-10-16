@@ -1,20 +1,23 @@
 stages:
+  - npm_install
   - es_lint
-  # - module_install
   # - run_server
   # - curl
 
-es_lint:
-  stage: es_lint
-  image: pipelinecomponents/eslint:latest
+module_install:
+  stage: npm_install
+  image: node
   script:
+    - npm install
+
+eslint:
+  stage: es_lint
+  image: node
+  script:
+    - npm install
     - npx eslint ./src/components/Home.js --fix
 
-# module_install:
-#   stage: module_install
-#   image: node
-#   script:
-#     - npm install
+
 
 # run_server:
 #   stage: run_server
