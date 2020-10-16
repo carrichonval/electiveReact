@@ -9,20 +9,25 @@ module_install:
   image: node
   script:
     - npm install
+  artifacts:
+    paths:
+      - dist/
 
 eslint:
   stage: es_lint
   image: node
+  dependencies:
+    - build  
   script:
-    - npm install
     - npx eslint ./src/components/Home.js --fix
 
 
 run_app:
   stage: run_app
   image: node
+  dependencies:
+    - build  
   script: 
-    - npm install
     - npm run build
 
 curl:
