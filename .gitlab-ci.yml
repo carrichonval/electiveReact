@@ -23,8 +23,8 @@ run_app:
   stage: run_app
   image: node
   variables:
-    - CI_SERVER_URL : http://localhost
-    - CI_SERVER_HOST : localhost
+    - CI_SERVER_URL: http://localhost
+    - CI_SERVER_HOST: localhost
   script: 
     - npm install
     - npm install pm2 -g
