@@ -1,7 +1,7 @@
 stages:
   - npm_install
   - es_lint
-  # - run_server
+  - run_app
   # - curl
 
 module_install:
@@ -19,13 +19,13 @@ eslint:
 
 
 
-# run_server:
-#   stage: run_server
-#   image: node
-#   script:
-#     - npm install
-#     - npm install pm2 -g
-#     - pm2 start app.js
+run_app:
+  stage: run_app
+  image: node
+  script:
+    - npm install
+    - npm install pm2 -g
+    - pm2 start ./node_modules/react-scripts/scripts/start.js --name "REACT"
 
 # curl:
 #   stage: curl
