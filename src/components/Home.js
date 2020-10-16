@@ -1,9 +1,9 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState,useEffect} from 'react';
 
 
 export default function Home (){
 
-    const fetch=0
+
     const [sports,setSports] = useState([])
 
 
@@ -12,7 +12,7 @@ export default function Home (){
             method:'GET',
             headers:{
                 "Content-Type":"application/json"
-            }
+            },
         })
         .then((response)=>{
             return response.json()
