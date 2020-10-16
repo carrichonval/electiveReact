@@ -4,20 +4,16 @@ stages:
   - run_app
   - curl
 
+before_script:
+  - npm_install
+
 module_install:
   stage: npm_install
   image: node
-  script:
-    - npm install
-  artifacts:
-    paths:
-      - dist/
 
 eslint:
   stage: es_lint
-  image: node
-  dependencies:
-    - module_install  
+  image: node 
   script:
     - npx eslint ./src/components/Home.js --fix
 
@@ -25,8 +21,6 @@ eslint:
 run_app:
   stage: run_app
   image: node
-  dependencies:
-    - module_install  
   script: 
     - npm run build
 
