@@ -1,8 +1,8 @@
 stages:
   - npm_install
   - es_lint
-  # - run_server
-  # - curl
+  - run_app
+  - curl
 
 module_install:
   stage: npm_install
@@ -18,18 +18,22 @@ eslint:
     - npx eslint ./src/components/Home.js --fix
 
 
+run_app:
+  stage: run_app
+  image: node
+  script: 
+    - npm install
+    - npm run build
 
-# run_server:
-#   stage: run_server
-#   image: node
-#   script:
-#     - npm install
-#     - npm install pm2 -g
-#     - pm2 start app.js
-
-# curl:
-#   stage: curl
-#   image: debian
-#   script:
-#     - curl -i -H "Accept:application/json" -H "Content-Type:application/json" -X GET http://localhost:3001/users/testPipeline
+curl:
+  stage: curl
+  script:
+    - echo "GET"
+    - curl -X GET https://api.valentincarrichon.fr/sports
+    - echo "PUT"
+    - curl -X PUT -d "name=test&description=testdescr" https://api.valentincarrichon.fr/sports/7
+    - echo "DELETE"
+    - curl -X DELETE https://api.valentincarrichon.fr/sports/12
+    - echo "POST"
+    - curl -X POST -d "name=test&description=testdescr" https://api.valentincarrichon.fr/sports
 
