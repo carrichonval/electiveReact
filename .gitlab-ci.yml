@@ -3,7 +3,7 @@ stages:
   - es_lint
   - run_app
   - curl
-  - container_registry
+  # - container_registry
 
 module_install:
   stage: npm_install
@@ -46,17 +46,17 @@ curl:
     - echo "POST"
     - curl -X POST -d "name=test&description=testdescr" https://api.valentincarrichon.fr/sports
 
-build_image:
-  stage: container_registry
-  image: docker:git
-  when: on_success
-  services:
-    - docker:dind
-  script:
-    - docker login registry.gitlab.com
-    - docker build -t registry.gitlab.com/carrichonval/tp_pipeline .
-    - docker push registry.gitlab.com/carrichonval/tp_pipeline
-  only:
-    - master
+# build_image:
+#   stage: container_registry
+#   image: docker:git
+#   when: on_success
+#   services:
+#     - docker:dind
+#   script:
+#     - docker login registry.gitlab.com
+#     - docker build -t registry.gitlab.com/carrichonval/tp_pipeline .
+#     - docker push registry.gitlab.com/carrichonval/tp_pipeline
+#   only:
+#     - master
 
 
