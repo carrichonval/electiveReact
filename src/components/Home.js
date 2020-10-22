@@ -92,7 +92,7 @@ export default function Home (){
                 <div className="grid grid-cols-4 gap-4">
                     {sports.map((sport)=>{
                         return(
-                            <div onClick={()=>deleteSport(sport.id)} key={sport.id} className="bg-white overflow-hidden shadow rounded-lg cursor-pointer hover:bg-gray-200">
+                            <div onClick={()=>deleteSport(sport.id)} key={sport.id} className=" bg-white overflow-hidden shadow rounded-lg cursor-pointer hover:bg-gray-200 shadow-md">
                                 <div className="px-4 py-5 sm:p-6">
                                     <dl>
                                         <dt className="text-sm text-center leading-5 font-medium text-gray-500 truncate">
@@ -101,6 +101,7 @@ export default function Home (){
                                     </dl>
                                 </div>
                             </div>
+                            
                         )
                     })}
                 </div>
