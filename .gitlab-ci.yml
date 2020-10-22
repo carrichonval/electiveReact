@@ -23,7 +23,7 @@ eslint:
   dependencies:
     - module_install
   script:
-    - npx eslint ./src/components/Home.js --fix
+    - npx eslint --fix src
 
 run_app:
   stage: run_app

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './tailwind.generated.css';
 
-import { createBrowserHistory } from 'history'
+import {createBrowserHistory} from 'history'
 
 import {
   Router,
