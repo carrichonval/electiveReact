@@ -31,8 +31,8 @@ run_app:
   dependencies:
     - module_install
   script: 
-    - npm run build
     - nohup npm start &
+    - npm run build
 
 curl:
   stage: curl
