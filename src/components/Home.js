@@ -36,7 +36,7 @@ export default function Home (){
         .then((response)=>{
             return response.json()
         })
-        .then((json)=>{
+        .then(()=>{
            fetchAPI()
         }).catch((error)=>{
             console.log(error)
@@ -57,7 +57,7 @@ export default function Home (){
         .then((response)=>{
             return response.json()
         })
-        .then((json)=>{
+        .then(()=>{
            fetchAPI()
            setSportName('')
         }).catch((error)=>{
