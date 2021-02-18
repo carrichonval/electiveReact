@@ -8,9 +8,7 @@ TP Noté :
       - Créer article (admin only)
 
    - Admin settings (uniquement si admin)
-      - Ajouter un user (email et password)
       - Editer le rôle d’un utilisateur
-      - Supprimer un utilisateur
 
 
 Envoyer votre code par mail à remi.millet@ynov.com

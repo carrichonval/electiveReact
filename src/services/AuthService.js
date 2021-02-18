@@ -117,7 +117,50 @@ class AuthService {
         },(1000 + Math.floor(Math.random() * 1000)))
       })
     }
+
+    //recuperer les users
+    getUsers(){
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(JSON.parse(localStorage.getItem("users")))
+        },(1000 + Math.floor(Math.random() * 1000)))
+      })
+    }
     
+
+        //Eregistremet de l'utilsiateur dans le local storage
+        addUser(user){
+          return new Promise((resolve, reject) => {
+            //Ajout de l'user dans le localStorage
+            let storage = JSON.parse(localStorage.getItem('users'))
+            storage.push(user)
+            localStorage.setItem("users",JSON.stringify(storage))
+            setTimeout(() => {
+              resolve(true)
+            },(1000 + Math.floor(Math.random() * 1000)))
+          })
+        }
+
+              //suppression d'un user
+              deleteUser(id){
+                return new Promise((resolve, reject) => {
+                  //Ajout de l'user dans le localStorage
+                  let storage = JSON.parse(localStorage.getItem('users'))
+                  let updated = []
+                  lodash.forEach(storage,(user)=>{
+                    if(user.id == id){
+                        //nothing
+                    }else{
+                      updated.push(user)
+                    }
+                  })
+
+                  localStorage.setItem("users",JSON.stringify(updated))
+                  setTimeout(() => {
+                    resolve(true)
+                  },(1000 + Math.floor(Math.random() * 1000)))
+                })
+              }
 
   }
   
