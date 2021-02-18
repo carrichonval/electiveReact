@@ -23,9 +23,18 @@ export default function Signup (props) {
 
   //Connexion
   const enregistrement = (props) => {
-    authService.register(email,password).then((json) => {
-        console.log(json)
-      })
+      if(isValidEmail(email)){
+        authService.register(email,password).then((json) => {
+            if(json){
+                props.history.push('/login')
+            }else{
+                setError("Erreur lors de la connexion")
+            }
+        })
+      }else{
+        setError("L'adresse email n'est pas correct")
+      }
+
   }
 
 
@@ -119,7 +128,7 @@ export default function Signup (props) {
 
         <div className="mt-6">
           <span className="block w-full rounded-md shadow-sm">
-            <button onClick={()=>enregistrement(props,password,email)}className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+            <button disabled={(email == "" || password == "" ? true : false)} onClick={()=>enregistrement(props,password,email)}className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
               Valider mon inscription
             </button>
           </span>
