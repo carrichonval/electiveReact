@@ -81,7 +81,7 @@ class AuthService {
 
                     localStorage.setItem("users",JSON.stringify(users))
                     setTimeout(() => {
-                      resolve(true)
+                      resolve(user)
                     },(1000 + Math.floor(Math.random() * 1000)))
                   })
                 }

@@ -61,7 +61,7 @@ export default withRouter((props)=>{
                             </div>
                         </div>
                         <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                            Email :{authContext.userInfos.email}
+                            Email :{authContext.userInfos.email} Password : {authContext.userInfos.password}
                         </div>
                         <div className="hidden sm:ml-6 sm:flex sm:items-center">
                            <button onClick={()=>deconnexion()}>Déconnexion</button>
