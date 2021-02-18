@@ -4,7 +4,7 @@ import AuthContext from '../contexts/AuthContext'
 
 
 
-export default function AdminSettings (){
+export default function Article (){
 
     const authContext = useContext(AuthContext)
     const history = useHistory()
@@ -17,7 +17,7 @@ export default function AdminSettings (){
         <>
         
             <div className="h-full flex flex-col items-center justify-center bg-gray-50 py-12 px-4 lg:px-4 ">
-                Admin settings
+                Liste articles
             </div>
         </>
     )

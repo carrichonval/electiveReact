@@ -1,8 +1,13 @@
+const { colors } = require('tailwindcss/defaultTheme')
 module.exports = {
-  purge: [],
-  theme: {
-    extend: {},
-  },
-  variants: {},
-  plugins: [],
-}
+    purge: [],
+    theme: {
+      extend: {
+        colors: {
+          primary: colors.red[700],
+        },
+      },
+    },
+    variants: {},
+    plugins: [],
+  }
