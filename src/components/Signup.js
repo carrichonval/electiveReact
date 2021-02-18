@@ -1,12 +1,11 @@
 import React,{useEffect,useState} from 'react'
-
+import authService from '../services/AuthService'
 
 
 export default function Signup (props) {
 
   const [password,setPassword] = useState('')
   const [email,setEmail] = useState('')
-  const [confirmPassword,setConfirmPassword] = useState('')
   const [error,setError] = useState('')
   const [success,setSuccess] = useState(false)
 
@@ -20,54 +19,13 @@ export default function Signup (props) {
     return pattern.test(emailAddress);
   };
 
-  function isValidPassword(password,confirmPassword){
-    if(password == confirmPassword){
-      return true
-    }else{
-      return false
-    }
-  }
 
 
   //Connexion
-  const enregistrement = (props,password,email) => {
-
-    if( email != "" && password != "" && isValidEmail(email) && isValidPassword(password,confirmPassword)){
-        fetch(process.env.REACT_APP_API_URL+'/auth/signup', {
-          method: 'POST',
-          headers: {
-              "Content-Type": "application/json",
-          },
-          body:JSON.stringify(
-              {
-                  'password':password,
-                  'email':email
-              }
-          )
+  const enregistrement = (props) => {
+    authService.register(email,password).then((json) => {
+        console.log(json)
       })
-      .then((response) => {
-          if (!response.ok) {
-              throw Error(response.statusText);
-          }
-          return response.json();
-      })
-      .then((json) => {
-          setSuccess(true)
-      })
-      .catch((error) => {
-
-      });
-    }else{
-        let error = ""
-        if(!isValidEmail(email)){
-            error+= "L'adresse email n'est pas correct."
-        }
-        if(!isValidPassword(password,confirmPassword)){
-            error+=" Les mots de passe ne sont pas identiques."
-        }
-        setError(error)
-    }
-      
   }
 
 
@@ -95,9 +53,7 @@ export default function Signup (props) {
             Compte créé avec succès !
           </h3>
           <div class="mt-2">
-            <p class="text-sm leading-5 text-gray-500">
-              Un email de confirmation a été envoyé à ton adresse mail.
-            </p>
+           
           </div>
         </div>
       </div>
@@ -157,15 +113,6 @@ export default function Signup (props) {
           </label>
           <div className="mt-1 rounded-md shadow-sm">
             <input autoComplete="off" onChange={(e)=>setPassword(e.target.value)} id="password" type="password" className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 outline-none transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
-          </div>
-        </div>
-
-        <div>
-          <label htmlFor="password" className="block text-sm font-medium leading-5 text-gray-700">
-            Confirmation Password
-          </label>
-          <div className="mt-1 rounded-md shadow-sm">
-            <input autoComplete="off" onChange={(e)=>setConfirmPassword(e.target.value)} id="confirmPassword" type="password"  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 outline-none transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
           </div>
         </div>
 

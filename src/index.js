@@ -33,10 +33,13 @@ function App() {
         setUserInfos(user)
       })
     },[])
+
+    authService.init()
     
     useEffect(() => {
       refreshUserInfos()
     },[refreshUserInfos])
+
     return (
         <AuthContext.Provider value={
             userInfos,

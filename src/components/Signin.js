@@ -73,6 +73,13 @@ export default function Signin (props){
                         </div>
                     }
 
+                    <div className="mt-6 flex items-center justify-between">
+                        <div className="flex items-center text-sm leading-5">
+                            <div onClick={()=>props.history.push('/register')} className="cursor-pointer font-medium text-red-700 hover:text-red-600 focus:outline-none focus:underline transition ease-in-out duration-150">
+                                Pas encore inscrit ?
+                            </div>
+                        </div>
+                    </div>
 
                     
 
