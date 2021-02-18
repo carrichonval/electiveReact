@@ -11,16 +11,19 @@ class AuthService {
 
     _users = [
       {
+        id:0,
         email:"valentin@gmail.com",
         password:"1234",
         role:"admin"
       },
       {
+        id:1,
         email:"regular@gamil.com",
         password:"1234",
         role:"regular"
       },
       {
+        id:2,
         email: "superadmin@gmail.com",
         password:"1234",
         role:"super_admin"
@@ -61,6 +64,27 @@ class AuthService {
             },(1000 + Math.floor(Math.random() * 1000)))
           })
         }
+
+                //Deconnexion
+                updateUser(user){
+                  return new Promise((resolve, reject) => {
+                    localStorage.setItem("user_connected",JSON.stringify(user))
+                    let users = JSON.parse(localStorage.getItem("users"))
+
+                    lodash.forEach(users,(u)=>{
+                      if(u.id == user.id){
+                        console.log(u)
+                        u.email = user.email
+                        u.password = user.password
+                      }
+                    })
+
+                    localStorage.setItem("users",JSON.stringify(users))
+                    setTimeout(() => {
+                      resolve(true)
+                    },(1000 + Math.floor(Math.random() * 1000)))
+                  })
+                }
 
     //Veriication de connexion
     checkAuth(){

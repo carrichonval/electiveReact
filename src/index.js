@@ -40,20 +40,27 @@ function App() {
       })
     },[])
 
+    const updateUser = useCallback((user) => {
+        return authService.updateUser(user).then((user) => {
+          setUserInfos(user)
+          return user
+        })
+      },[])
+
     const checkAuth = useCallback(() => {
         return authService.checkAuth().then((user) => {
           setUserInfos(user)
         })
       },[])
 
-      const logout = useCallback(() => {
+    const logout = useCallback(() => {
         return authService.logout().then(() => {
           setUserInfos(null)
         })
-      },[]) 
+    },[]) 
 
+    //Initialisation du local storage
       useEffect(()=>{
-        console.log("INITIALISATION")
         authService.init()
         articleService.init()
     },[])
@@ -63,7 +70,7 @@ function App() {
     },[checkAuth])
 
     return (
-        <AuthContext.Provider value = {{userInfos, signUser,checkAuth,logout}}
+        <AuthContext.Provider value = {{userInfos, signUser,checkAuth,logout,updateUser}}
         >
             <Router history={customHistory}>
                 <Header/>

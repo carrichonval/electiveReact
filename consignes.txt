@@ -4,11 +4,9 @@ TP Noté :
 - Main app: 
     -  Blog
         - Articles avec pagination
-       -  Article par id
        - Edition si admin (delete aussi)
       - Créer article (admin only)
-   - Settings 
-       - Edition mail et password
+
    - Admin settings (uniquement si admin)
       - Ajouter un user (email et password)
       - Editer le rôle d’un utilisateur
