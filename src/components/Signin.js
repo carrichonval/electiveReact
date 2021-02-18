@@ -1,16 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
+import AuthContext from '../contexts/AuthContext'
+import { useHistory } from 'react-router-dom';
+import authService from '../services/AuthService'
 
 
 export default function Signin (props){
 
-    const [login,setLogin] = useState('')
+    const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const [error,setError] = useState('')
     const [passwordVisible,setPasswordVisible] = useState(false)
 
+    const authContext = useContext(AuthContext)
+    const history = useHistory()
+
+
     //Empeche d'afficher la page de login quand on est déja connecté
     useEffect(()=>{
-
+        if(authContext.userInfos){
+            history.push('/')
+        }
         document.addEventListener('keypress',checkEnterPress)
         return function cleanup() {
             document.removeEventListener('keypress',checkEnterPress)
@@ -18,11 +27,23 @@ export default function Signin (props){
 
     },[])
 
+    //appuyer sur entrée pour se connecter
     const checkEnterPress = (e) => {
-        console.log(e)
         if(e.key == "Enter"){
             document.getElementById("login").click()
         }
+    }
+
+    //Se connecter
+    const connexion = ()=>{
+        authContext.signUser(email,password).then((json) => {
+            console.log("SIGNIN",json)
+            if(json){
+               history.push("/articles")
+            }else{
+                setError("Utilisateur introuvable")
+            }
+        })
     }
 
 
@@ -37,7 +58,7 @@ export default function Signin (props){
                     </div>
                     <div className="rounded-md shadow-sm">
                         <div>
-                            <input autoComplete="off" onChange={(e)=>setLogin(e.target.value)} value={login} name="email" type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Email address"/>
+                            <input autoComplete="off" onChange={(e)=>setEmail(e.target.value)} value={email} name="email" type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Email address"/>
                         </div>
                         <div className="-mt-px">
                             <div>
@@ -84,7 +105,7 @@ export default function Signin (props){
                     
 
                     <div className="mt-6">
-                        <button id="login"  className="w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary hover:bg-red-600 focus:outline-none focus:border-red-800 focus:shadow-outline-red active:bg-red-800 transition duration-150 ease-in-out">
+                        <button id="login" onClick={()=>connexion()}  className="w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary hover:bg-red-600 focus:outline-none focus:border-red-800 focus:shadow-outline-red active:bg-red-800 transition duration-150 ease-in-out">
                         Se connecter
                         </button>
                     </div>

@@ -3,7 +3,8 @@ import React from 'react';
 
 const AuthContext = React.createContext({
     userInfos: null,
-    refreshUserInfos: () => null 
+    signUser: () => null,
+    checkAuth:()=>null 
 })
 
 export default AuthContext

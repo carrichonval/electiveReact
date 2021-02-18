@@ -28,26 +28,38 @@ import Signup from './components/Signup'
 const customHistory = createBrowserHistory()
 
 function App() {
+
+    useEffect(()=>{
+        console.log("INITIALISATION")
+        authService.init()
+        articleService.init()
+    },[])
+
     const [userInfos, setUserInfos] = useState(null)
-    const refreshUserInfos = useCallback(() => {
-      return authService.signin().then((user) => {
+    const signUser = useCallback((email,password) => {
+      return authService.signin(email,password).then((user) => {
         setUserInfos(user)
+        return user
+        
       })
     },[])
 
-    authService.init()
-    articleService.init()
+    const checkAuth = useCallback(() => {
+        return authService.checkAuth().then((user) => {
+          console.log("Check auth",user)
+          setUserInfos(user)
+        })
+      },[])
+
+    console.log("User infos",userInfos)
     
     
     useEffect(() => {
-      refreshUserInfos()
-    },[refreshUserInfos])
+      checkAuth()
+    },[checkAuth])
 
     return (
-        <AuthContext.Provider value={
-            userInfos,
-            refreshUserInfos
-        }
+        <AuthContext.Provider value = {{userInfos, signUser,checkAuth}}
         >
             <Router history={customHistory}>
                 <Switch>

@@ -1,19 +1,5 @@
 TP Noté : 
 
-Fake API et fake « db » en utilisant le local Storage
-
-
-LocalStorage
-Set
-Get
-
-JSON.stringify(monObjet)
-
-
-JSON.parse(maString)
-
-
-
 
  - Authentification (fake API)
     - Trois types users (mail, mot de passe),super_admin admin et regular
@@ -31,6 +17,25 @@ JSON.parse(maString)
       - Editer le rôle d’un utilisateur
       - Supprimer un utilisateur
    - un header (ou une side bar) avec des informations de l’utilisateur
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,3 +1,6 @@
+import lodash from 'lodash'
+
+
 class AuthService {
 
     _superAdmin = {
@@ -6,50 +9,65 @@ class AuthService {
       role:"super_admin"
     }
 
-    _users = []
+    _users = [{
+      email:"valentin@gmail.com",
+      password:"1234"
+    }]
 
-//Se lance au debut du projet pour supprimer les users
+    //Se lance au debut du projet pour creer le storage des users
     init(){
       return new Promise((resolve, reject) => {
         localStorage.setItem('users',JSON.stringify(this._users))
+        localStorage.setItem('user_connected',"")
         setTimeout(() => {
           resolve(true)
         },(1000 + Math.floor(Math.random() * 1000)))
       })
     }
 
-    signin(){
+    signin(email,password){
       return new Promise((resolve, reject) => {
+        let users = JSON.parse(localStorage.getItem('users'))
+        let find = lodash.find(users,(user)=>{
+          return (user.password == password && user.email == email)
+        })
+        localStorage.setItem("user_connected",JSON.stringify(find))
         setTimeout(() => {
-          resolve(true)
+          resolve(find)
         },(1000 + Math.floor(Math.random() * 1000)))
       })
     }
 
+    checkAuth(){
+      return new Promise((resolve, reject) => {
+        let storage = localStorage.getItem("user_connected")
+        let user
+        if(storage){
+          user = JSON.parse(storage)
+        }
+        
+        setTimeout(() => {
+          if(user){
+            resolve(user)
+          }else{
+            resolve({})
+          }
+        },(1000 + Math.floor(Math.random() * 1000)))
+      })
+    }
+
+    //Eregistremet de l'utilsiateur dans le local storage
     register(email,password){
       return new Promise((resolve, reject) => {
         //Ajout de l'user dans le localStorage
         let storage = JSON.parse(localStorage.getItem('users'))
-        console.log("Storage",storage)
         storage.push({email:email,password:password})
         localStorage.setItem("users",JSON.stringify(storage))
-        console.log(JSON.parse(localStorage.getItem('users')))
         setTimeout(() => {
           resolve(true)
         },(1000 + Math.floor(Math.random() * 1000)))
       })
     }
-  
-    updateUser(user){
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          this._user = user
-          resolve(this._user)
-        },(1000 + Math.floor(Math.random() * 1000)))
-      })
-    }
-
-
     
 
   }

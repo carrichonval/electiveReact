@@ -8,9 +8,9 @@ export default function ListArticles (){
 
     const authContext = useContext(AuthContext)
     const history = useHistory()
+    console.log("page articles",authContext.userInfos)
     if(!authContext.userInfos){
         history.push('/login')
-      return null
     }
 
     return (
