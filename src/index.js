@@ -13,6 +13,7 @@ import {
 
 import AuthContext from './contexts/AuthContext'
 import authService from "./services/AuthService"
+import articleService from './services/ArticlesService'
 
 import Home from './components/Home'
 import ListArticles from './components/ListArticles'
@@ -35,6 +36,8 @@ function App() {
     },[])
 
     authService.init()
+    articleService.init()
+    
     
     useEffect(() => {
       refreshUserInfos()

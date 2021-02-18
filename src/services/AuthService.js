@@ -8,7 +8,7 @@ class AuthService {
 
     _users = []
 
-
+//Se lance au debut du projet pour supprimer les users
     init(){
       return new Promise((resolve, reject) => {
         localStorage.setItem('users',JSON.stringify(this._users))
