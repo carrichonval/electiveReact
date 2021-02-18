@@ -53,9 +53,11 @@ export default withRouter((props)=>{
                                 <Link  to="/settings" className={(props.location.pathname === "/settings" ? "border-primary " : "border-transparent ") +"ml-8 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-red-400 transition duration-150 ease-in-out"}>
                                     Settings
                                 </Link>
-                                <Link  to="/admin/settings" className={(props.location.pathname === "/admin/settings" ? "border-primary " : "border-transparent ") +"ml-8 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-red-400 transition duration-150 ease-in-out"}>
+                                {authContext.userInfos.role == "super_admin" ?
+                                    <Link  to="/admin/settings" className={(props.location.pathname === "/admin/settings" ? "border-primary " : "border-transparent ") +"ml-8 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-red-400 transition duration-150 ease-in-out"}>
                                     Admin settings
                                 </Link>
+                                :null}
                             </div>
                         </div>
                         <div className="hidden sm:ml-6 sm:flex sm:items-center">

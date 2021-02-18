@@ -42,7 +42,10 @@ export default function ListArticles (){
 
                 {articles.map((article)=>{
                     return(
-                        <Link  to={"/articles/"+article.id}>
+                        <Link  to={{
+                            pathname:"/articles/"+article.id,
+                            state:{article:article}
+                        }}>
                             <li class="col-span-1 bg-white rounded-lg shadow cursor-pointer">
                             <div class="w-full flex items-center justify-between p-6 space-x-6">
                             <div class="flex-1 truncate">

@@ -15,35 +15,6 @@ TP Noté :
       - Supprimer un utilisateur
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- Notes :  
-- Le super admin sera en dur dans le code et non modifiable
-- Pensez aux cas d’erreurs (404, mauvais login)
-- Il faudra un logout
-- Le style comptera quand même un peu (pas comme mes corrections quoi)
-- Gérer les chargements
-- Essayez d’optimiser le code 
-- La structure des fichiers comptera
-
 Envoyer votre code par mail à remi.millet@ynov.com
 
 Si vous envoyez un git je vérifierai les heures de commits. Si vous envoyez un zip pensez à enlever le node_modules pitié.

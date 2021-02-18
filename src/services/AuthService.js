@@ -19,6 +19,11 @@ class AuthService {
         email:"regular@gamil.com",
         password:"1234",
         role:"regular"
+      },
+      {
+        email: "superadmin@gmail.com",
+        password:"1234",
+        role:"super_admin"
       }
     ]
 
