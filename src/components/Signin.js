@@ -53,7 +53,6 @@ export default function Signin (props){
           }else{
             setError("L'adresse email n'est pas au bon format")
           }
-       
     }
 
 

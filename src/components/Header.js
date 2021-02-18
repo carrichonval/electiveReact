@@ -2,6 +2,7 @@ import React, {useState,useEffect,useContext} from 'react';
 import { useHistory } from 'react-router-dom';
 import AuthContext from '../contexts/AuthContext'
 import { withRouter,Link } from "react-router-dom";
+import authService from '../services/AuthService'
 
 export default withRouter((props)=>{
 
@@ -12,6 +13,8 @@ export default withRouter((props)=>{
       return null
     }
 
+    console.log("header",authContext.userInfos)
+
     const [isOpenMobile,setIsOpenMobile] = useState(false)
 
     if(isOpenMobile){
@@ -19,6 +22,13 @@ export default withRouter((props)=>{
         window.onscroll=function(){window.scrollTo(0, y);};
     }else{
         window.onscroll=function(){};
+    }
+
+
+    const deconnexion = ()=>{
+            authContext.logout().then(() => {
+                   history.push("/login")
+            })
     }
     
     //Header qui s'affiche seulement quand on est connecté    
@@ -30,7 +40,7 @@ export default withRouter((props)=>{
                         <div className="flex">
                             <div className="flex-shrink-0 flex items-center">
                                 <div className="h-12 w-12 lg:hidden block">
-                                    
+                                   
                                 </div>
                                 <div className="h-12 w-12 lg:block hidden">
                                    
@@ -49,14 +59,10 @@ export default withRouter((props)=>{
                             </div>
                         </div>
                         <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                            
-                                <Link  to="/settings" className="mx-2">
-                                    <svg className={(props.location.pathname === "/parametres" ? "text-primary " : "text-gray-500 ")+"h-5 w-5 "}  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"> 
-                                        <circle cx="12" cy="12" r="3" />
-                                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                                    </svg>
-                                </Link>
-
+                            Email :{authContext.userInfos.email}
+                        </div>
+                        <div className="hidden sm:ml-6 sm:flex sm:items-center">
+                           <button onClick={()=>deconnexion()}>Déconnexion</button>
                         </div>
 
                     </div>

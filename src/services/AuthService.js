@@ -9,10 +9,18 @@ class AuthService {
       role:"super_admin"
     }
 
-    _users = [{
-      email:"valentin@gmail.com",
-      password:"1234"
-    }]
+    _users = [
+      {
+        email:"valentin@gmail.com",
+        password:"1234",
+        role:"admin"
+      },
+      {
+        email:"regular@gamil.com",
+        password:"1234",
+        role:"regular"
+      }
+    ]
 
     //Se lance au debut du projet pour creer le storage des users
     init(){
@@ -25,6 +33,7 @@ class AuthService {
       })
     }
 
+    //Connexion
     signin(email,password){
       return new Promise((resolve, reject) => {
         let users = JSON.parse(localStorage.getItem('users'))
@@ -38,10 +47,21 @@ class AuthService {
       })
     }
 
+        //Deconnexion
+        logout(){
+          return new Promise((resolve, reject) => {
+            localStorage.setItem("user_connected","")
+            setTimeout(() => {
+              resolve(true)
+            },(1000 + Math.floor(Math.random() * 1000)))
+          })
+        }
+
+    //Veriication de connexion
     checkAuth(){
       return new Promise((resolve, reject) => {
         let storage = localStorage.getItem("user_connected")
-        let user
+        let user;
         if(storage){
           user = JSON.parse(storage)
         }

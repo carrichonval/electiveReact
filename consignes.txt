@@ -1,8 +1,6 @@
 TP Noté : 
 
 
- - Authentification (fake API)
-    - Trois types users (mail, mot de passe),super_admin admin et regular
 - Main app: 
     -  Blog
         - Articles avec pagination
@@ -15,7 +13,6 @@ TP Noté :
       - Ajouter un user (email et password)
       - Editer le rôle d’un utilisateur
       - Supprimer un utilisateur
-   - un header (ou une side bar) avec des informations de l’utilisateur
 
 
 

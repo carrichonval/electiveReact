@@ -30,37 +30,40 @@ const customHistory = createBrowserHistory()
 
 function App() {
 
-    useEffect(()=>{
-        console.log("INITIALISATION")
-        authService.init()
-        articleService.init()
-    },[])
+
 
     const [userInfos, setUserInfos] = useState(null)
     const signUser = useCallback((email,password) => {
       return authService.signin(email,password).then((user) => {
         setUserInfos(user)
         return user
-        
       })
     },[])
 
     const checkAuth = useCallback(() => {
         return authService.checkAuth().then((user) => {
-          console.log("Check auth",user)
           setUserInfos(user)
         })
       },[])
 
-    console.log("User infos",userInfos)
-    
+      const logout = useCallback(() => {
+        return authService.logout().then(() => {
+          setUserInfos(null)
+        })
+      },[]) 
+
+      useEffect(()=>{
+        console.log("INITIALISATION")
+        authService.init()
+        articleService.init()
+    },[])
     
     useEffect(() => {
       checkAuth()
     },[checkAuth])
 
     return (
-        <AuthContext.Provider value = {{userInfos, signUser,checkAuth}}
+        <AuthContext.Provider value = {{userInfos, signUser,checkAuth,logout}}
         >
             <Router history={customHistory}>
                 <Header/>
