@@ -1,0 +1,51 @@
+TP Noté : 
+
+Fake API et fake « db » en utilisant le local Storage
+
+
+LocalStorage
+Set
+Get
+
+JSON.stringify(monObjet)
+
+
+JSON.parse(maString)
+
+
+
+
+ - Authentification (fake API)
+    - Trois types users (mail, mot de passe),super_admin admin et regular
+    - Gérer les erreurs de login
+    - Signup pour créer user (juste mail et mot de passe)
+- Main app: 
+    -  Blog
+        - Articles avec pagination
+       -  Article par id
+       - Edition si admin (delete aussi)
+      - Créer article (admin only)
+   - Settings 
+       - Edition mail et password
+   - Admin settings (uniquement si admin)
+      - Ajouter un user (email et password)
+      - Editer le rôle d’un utilisateur
+      - Supprimer un utilisateur
+   - un header (ou une side bar) avec des informations de l’utilisateur
+
+
+
+ Notes :  
+- Le super admin sera en dur dans le code et non modifiable
+- Pensez aux cas d’erreurs (404, mauvais login)
+- Il faudra un logout
+- Le style comptera quand même un peu (pas comme mes corrections quoi)
+- Gérer les chargements
+- Essayez d’optimiser le code 
+- La structure des fichiers comptera
+
+Envoyer votre code par mail à remi.millet@ynov.com
+
+Si vous envoyez un git je vérifierai les heures de commits. Si vous envoyez un zip pensez à enlever le node_modules pitié.
+
+
