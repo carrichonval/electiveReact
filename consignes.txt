@@ -3,7 +3,6 @@ TP Noté :
 
  - Authentification (fake API)
     - Trois types users (mail, mot de passe),super_admin admin et regular
-    - Gérer les erreurs de login
 - Main app: 
     -  Blog
         - Articles avec pagination

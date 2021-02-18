@@ -27,6 +27,11 @@ export default function Signin (props){
 
     },[])
 
+    function isValidEmail(emailAddress) {
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        return pattern.test(emailAddress);
+      };
+
     //appuyer sur entrée pour se connecter
     const checkEnterPress = (e) => {
         if(e.key == "Enter"){
@@ -36,14 +41,19 @@ export default function Signin (props){
 
     //Se connecter
     const connexion = ()=>{
-        authContext.signUser(email,password).then((json) => {
-            console.log("SIGNIN",json)
-            if(json){
-               history.push("/articles")
-            }else{
-                setError("Utilisateur introuvable")
-            }
-        })
+        if(isValidEmail(email)){
+            authContext.signUser(email,password).then((json) => {
+                console.log("SIGNIN",json)
+                if(json){
+                   history.push("/articles")
+                }else{
+                    setError("Utilisateur introuvable")
+                }
+            })
+          }else{
+            setError("L'adresse email n'est pas au bon format")
+          }
+       
     }
 
 

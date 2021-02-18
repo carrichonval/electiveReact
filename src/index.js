@@ -23,6 +23,7 @@ import AdminSettings from './components/AdminSettings'
 import NotFound from './components/NotFound'
 import Signin from './components/Signin'
 import Signup from './components/Signup'
+import Header from './components/Header'
 
 
 const customHistory = createBrowserHistory()
@@ -62,6 +63,7 @@ function App() {
         <AuthContext.Provider value = {{userInfos, signUser,checkAuth}}
         >
             <Router history={customHistory}>
+                <Header/>
                 <Switch>
                     <Route exact path="/login" component={Signin} />
                     <Route exact path="/register" component={Signup} />

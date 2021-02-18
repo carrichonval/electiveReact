@@ -50,7 +50,7 @@ class AuthService {
           if(user){
             resolve(user)
           }else{
-            resolve({})
+            resolve(null)
           }
         },(1000 + Math.floor(Math.random() * 1000)))
       })
